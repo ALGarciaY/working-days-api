@@ -7,8 +7,7 @@ import {
   addWorkingHours
 } from "../domain/dateService";
 import { ApiError, DateQuery, DateResponse} from "../types";
-
-const BOGOTA_TZ = "America/Bogota";
+import { CONFIG } from "../config";
 
 export async function calcularFechaController(
   req: Request,
@@ -77,7 +76,7 @@ export async function calcularFechaController(
       return;
     }
 
-    let currentBogota = startUtc.setZone(BOGOTA_TZ);
+    let currentBogota = startUtc.setZone(CONFIG.BOGOTA_TZ);
     currentBogota = normalizeBackwardToWorking(currentBogota, holidays);
 
     if (days > 0) {

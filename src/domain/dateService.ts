@@ -1,24 +1,17 @@
 import { DateTime } from "luxon";
 import { HolidayResponse } from "../types";
+import { CONFIG } from "../config";
 
-// Constantes de negocio
 const WORK_START = 8;   // Inicio de jornada (08:00)
 const LUNCH_START = 12; // Inicio del almuerzo (12:00)
 const LUNCH_END = 13;   // Fin del almuerzo (13:00)
 const WORK_END = 17;    // Fin de jornada (17:00)
-const BOGOTA_TZ = "America/Bogota";
 
-/**
- * Verifica si una fecha es festivo
- */
 export function isHoliday(dt: DateTime, holidays: HolidayResponse): boolean {
   const isoDate: string | null = dt.toISODate();
   return isoDate ? holidays.includes(isoDate) : false;
 }
 
-/**
- * Verifica si un día es laboral (lunes-viernes y no festivo)
- */
 export function isWorkingDay(dt: DateTime, holidays: HolidayResponse): boolean {
   const weekday: number = dt.weekday; // 1 = Lunes, ..., 7 = Domingo
   if (weekday >= 6) return false;
@@ -37,7 +30,7 @@ export function normalizeBackwardToWorking(
   dtInput: DateTime,
   holidays: HolidayResponse
 ): DateTime {
-  let dt: DateTime = dtInput.setZone(BOGOTA_TZ);
+  let dt: DateTime = dtInput.setZone(CONFIG.BOGOTA_TZ);
 
   // Caso 1: día no laboral
   if (!isWorkingDay(dt, holidays)) {
@@ -74,9 +67,6 @@ export function normalizeBackwardToWorking(
   return dt.set({ second: 0, millisecond: 0 });
 }
 
-/**
- * Suma días hábiles preservando la hora/minuto.
- */
 export function addWorkingDays(
   dtInput: DateTime,
   daysToAdd: number,
@@ -84,7 +74,7 @@ export function addWorkingDays(
 ): DateTime {
   if (daysToAdd <= 0) return dtInput;
 
-  let cursor: DateTime = dtInput.setZone(BOGOTA_TZ);
+  let cursor: DateTime = dtInput.setZone(CONFIG.BOGOTA_TZ);
   const hour: number = cursor.hour;
   const minute: number = cursor.minute;
 
@@ -98,9 +88,6 @@ export function addWorkingDays(
   return cursor;
 }
 
-/**
- * Suma horas hábiles (enteras), respetando segmentos laborales (mañana y tarde).
- */
 export function addWorkingHours(
   dtInput: DateTime,
   hoursToAdd: number,
@@ -108,7 +95,7 @@ export function addWorkingHours(
 ): DateTime {
   if (hoursToAdd <= 0) return dtInput;
 
-  let cursor: DateTime = dtInput.setZone(BOGOTA_TZ);
+  let cursor: DateTime = dtInput.setZone(CONFIG.BOGOTA_TZ);
   let remainingMinutes: number = hoursToAdd * 60;
 
   while (remainingMinutes > 0) {

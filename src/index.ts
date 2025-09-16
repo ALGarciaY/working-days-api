@@ -6,7 +6,7 @@ const PORT: number = parseInt(process.env.PORT || "3000", 10);
 
 app.use("/api", routes);
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/health", (req: Request, res: Response) => {
   res.status(200).send("Working Days API - GET /api/working-date?days=...&hours=...&date=...");
 });
 
