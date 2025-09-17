@@ -1,0 +1,26 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+package-lock.json
+
+# TypeScript
+dist/
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+logs/*.log
+
+# Configuración de entorno
+.env
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDEs/Editors
+.vscode/
+.idea/
