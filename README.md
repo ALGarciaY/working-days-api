@@ -39,9 +39,9 @@ En el `package.json` ya están configurados los siguientes scripts:
 ```json
 {
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc -p .",
-    "start": "node dist/index.js"
+    "start": "node dist/server.js"
   }
 }
 ```
@@ -56,16 +56,33 @@ En el `package.json` ya están configurados los siguientes scripts:
   npm run build
   ```
 
-- **Producción**:
+- **Producción local**:
   ```bash
   npm start
   ```
+
+⚠️ Nota: En Vercel, la plataforma no usa npm start, sino que tomará dist/index.js automáticamente porque es el entrypoint exportado.
 
 ---
 
 ## 📡 Uso de la API
 
-La API expone un endpoint para calcular fechas hábiles.
+La API expone dos endpoint, uno para calcular fechas hábiles y otro para comprobar que la API esta corriendo correctamente.
+
+### Endpoint
+```
+GET /health
+```
+
+### Ejemplo de request
+```http
+GET http://localhost:3000/health
+```
+
+### Ejemplo de respuesta
+```
+Working Days API - GET /api/working-date?days=...&hours=...&date=...
+```
 
 ### Endpoint
 ```
