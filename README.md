@@ -67,9 +67,9 @@ En el `package.json` ya están configurados los siguientes scripts:
 
 ## 📡 Uso de la API
 
-La API expone dos endpoint, uno para calcular fechas hábiles y otro para comprobar que la API esta corriendo correctamente.
+La API expone dos endpoint, uno para comprobar que la API está corriendo correctamente y otro para calcular fechas hábiles.
 
-### Endpoint
+### ✳️ Endpoint para comprobar la API
 ```
 GET /health
 ```
@@ -84,7 +84,7 @@ GET http://localhost:3000/health
 Working Days API - GET /api/working-date?days=...&hours=...&date=...
 ```
 
-### Endpoint
+### ✳️ Endpoint de calcular fechas hábiles
 ```
 GET /api/working-date
 ```
