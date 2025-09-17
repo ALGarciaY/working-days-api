@@ -5,7 +5,7 @@ const app = express();
 
 app.use("/api", routes);
 
-app.get("/health", (req: Request, res: Response) => {
+app.get("/", (req: Request, res: Response) => {
   res
     .status(200)
     .send("Working Days API - GET /api/working-date?days=...&hours=...&date=...");

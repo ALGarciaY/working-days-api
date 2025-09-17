@@ -67,16 +67,17 @@ En el `package.json` ya están configurados los siguientes scripts:
 
 ## 📡 Uso de la API
 
-La API expone dos endpoint, uno para comprobar que la API está corriendo correctamente y otro para calcular fechas hábiles.
+La API expone dos endpoints principales:
 
-### ✳️ Endpoint para comprobar la API
+### 1. Endpoint raíz (comprobar que la API está corriendo)
 ```
-GET /health
+GET /
 ```
+📍 Uso: verificar que la API está activa.
 
 ### Ejemplo de request
 ```http
-GET http://localhost:3000/health
+GET http://localhost:3000/
 ```
 
 ### Ejemplo de respuesta
@@ -84,7 +85,7 @@ GET http://localhost:3000/health
 Working Days API - GET /api/working-date?days=...&hours=...&date=...
 ```
 
-### ✳️ Endpoint de calcular fechas hábiles
+### 2. Endpoint de cálculo de fechas hábiles
 ```
 GET /api/working-date
 ```
@@ -130,7 +131,8 @@ WORKING-DAYS-API/
     ├── .gitignore                  # Ignora dependencias, build y configuraciones locales
     ├── package.json                # Dependencias, scripts y metadatos del proyecto
     ├── README.md                   # Documentación del proyecto (instalación, uso, estructura)
-    └── tsconfig.json               # Configuración de TypeScript (compilación y reglas)
+    ├── tsconfig.json               # Configuración de TypeScript (compilación y reglas)
+    └── vercel.json                 # Configuración de despliegue en Vercel (builds, rutas, etc.)
 ```
 
 ---
