@@ -14,6 +14,9 @@ logs
 *.log
 logs/*.log
 
+# Configuración de entorno
+.env
+
 # Sistema operativo
 .DS_Store
 Thumbs.db
